@@ -1,0 +1,9 @@
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+  "id": "123-abc-qwerty",
+  "name": "First Second",
+  "email": "email@test.com",
+  "password": "Password123!"
+}

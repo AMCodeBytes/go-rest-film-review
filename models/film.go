@@ -25,6 +25,6 @@ func GetAllFilms() []Film {
 }
 
 // Save a film
-func (f Film) Save() {
+func (f Film) Create() {
 	films = append(films, f)
 }
