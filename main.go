@@ -12,6 +12,7 @@ func main() {
 	server := gin.Default()
 
 	server.GET("/users", getUsers)
+	server.GET("/users/:id", getUser)
 	server.POST("/users", createUser)
 
 	server.GET("/films", getFilms)
@@ -25,6 +26,11 @@ func main() {
 func getUsers(context *gin.Context) {
 	users := models.GetAllUsers()
 	context.JSON(http.StatusOK, users)
+}
+
+func getUser(context *gin.Context) {
+	id := context.Param("id")
+	context.JSON(http.StatusOK, models.GetUserByID(id))
 }
 
 func createUser(context *gin.Context) {
