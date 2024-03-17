@@ -15,6 +15,7 @@ func main() {
 	server.POST("/users", createUser)
 
 	server.GET("/films", getFilms)
+	server.GET("/films/:id", getFilm)
 	server.POST("/films", createFilm)
 
 	// listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
@@ -36,10 +37,10 @@ func createUser(context *gin.Context) {
 		return
 	}
 
-	user.ID = "123-abc-qwerty"
-	user.Name = "First Second"
-	user.Email = "email@test.com"
-	user.Password = "Password123!"
+	// user.ID = "123-abc-qwerty"
+	// user.Name = "First Second"
+	// user.Email = "email@test.com"
+	// user.Password = "Password123!"
 
 	user.Create()
 
@@ -49,6 +50,11 @@ func createUser(context *gin.Context) {
 func getFilms(context *gin.Context) {
 	films := models.GetAllFilms()
 	context.JSON(http.StatusOK, films)
+}
+
+func getFilm(context *gin.Context) {
+	id := context.Param("id")
+	context.JSON(http.StatusOK, models.GetFilmByID(id))
 }
 
 func createFilm(context *gin.Context) {
@@ -61,9 +67,13 @@ func createFilm(context *gin.Context) {
 		return
 	}
 
-	film.ID = "123-abc-qwerty"
-	film.Name = "Film name"
-	film.Description = "Film description will go here for the film."
+	// film.ID = "123-abc-qwerty"
+	// film.Name = "Film name"
+	// film.Description = "Film description will go here for the film."
+	// film.Categories = []string{"Action", "Thriller", "Horror"}
+	// film.Likes = 15
+	// film.Dislikes = 2
+	// film.Comments = []string{"This is a great film", "Could do with more action"}
 
 	film.Create()
 

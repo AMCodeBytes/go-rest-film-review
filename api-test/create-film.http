@@ -4,5 +4,16 @@ Content-Type: application/json
 {
   "id": "123-abc-qwerty",
   "name": "Film name",
-  "description": "Film description will go here for the film."
+  "description": "Film description will go here for the film.",
+  "categories": [
+    "Action", 
+    "Thriller", 
+    "Horror"
+  ],
+	"likes": 15,
+	"dislikes": 2,
+	"comments": [
+    "This is a great film",
+    "Could do with more action"
+  ]
 }
