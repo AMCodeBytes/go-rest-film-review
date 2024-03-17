@@ -1,6 +1,7 @@
 package models
 
 import (
+	"errors"
 	"slices"
 	"time"
 )
@@ -35,4 +36,15 @@ func GetAllFilms() []Film {
 // Save a film
 func (f Film) Create() {
 	films = append(films, f)
+}
+
+func DeleteFilm(id string) error {
+	idx := slices.IndexFunc(films, func(f Film) bool { return f.ID == id })
+
+	if idx != 0 {
+		return errors.New("no film exists")
+	}
+
+	films = slices.Replace(films, idx, idx+1)
+	return nil
 }

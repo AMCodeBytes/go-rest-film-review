@@ -18,6 +18,7 @@ func main() {
 	server.GET("/films", getFilms)
 	server.GET("/films/:id", getFilm)
 	server.POST("/films", createFilm)
+	server.POST("/films/delete/:id", deleteFilm)
 
 	// listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 	server.Run()
@@ -84,4 +85,17 @@ func createFilm(context *gin.Context) {
 	film.Create()
 
 	context.JSON(http.StatusCreated, gin.H{"message": "Film created!", "film": film})
+}
+
+func deleteFilm(context *gin.Context) {
+	id := context.Param("id")
+
+	err := models.DeleteFilm(id)
+
+	if err != nil {
+		context.JSON(http.StatusBadRequest, gin.H{"message": "The film failed to be deleted."})
+		return
+	}
+
+	context.JSON(http.StatusOK, gin.H{"message": "Film was successfully deleted."})
 }
