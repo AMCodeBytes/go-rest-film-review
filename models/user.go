@@ -1,6 +1,7 @@
 package models
 
 import (
+	"errors"
 	"slices"
 	"time"
 )
@@ -32,4 +33,15 @@ func GetAllUsers() []User {
 
 func (u User) Create() {
 	users = append(users, u)
+}
+
+func DeleteUser(id string) error {
+	idx := slices.IndexFunc(users, func(u User) bool { return u.ID == id })
+
+	if idx == -1 {
+		return errors.New("no user exists")
+	}
+
+	users = slices.Replace(users, idx, idx+1)
+	return nil
 }

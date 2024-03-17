@@ -2,7 +2,7 @@ POST http://localhost:8080/films
 Content-Type: application/json
 
 {
-  "id": "789-abc-qwerty",
+  "id": "456-abc-qwerty",
   "name": "Film name",
   "description": "Film description will go here for the film.",
   "categories": [

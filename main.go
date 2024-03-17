@@ -14,6 +14,7 @@ func main() {
 	server.GET("/users", getUsers)
 	server.GET("/users/:id", getUser)
 	server.POST("/users", createUser)
+	server.POST("/users/delete/:id", deleteUser)
 
 	server.GET("/films", getFilms)
 	server.GET("/films/:id", getFilm)
@@ -52,6 +53,19 @@ func createUser(context *gin.Context) {
 	user.Create()
 
 	context.JSON(http.StatusCreated, gin.H{"message": "User created!", "user": user})
+}
+
+func deleteUser(context *gin.Context) {
+	id := context.Param("id")
+
+	err := models.DeleteUser(id)
+
+	if err != nil {
+		context.JSON(http.StatusBadRequest, gin.H{"message": "The user failed to be deleted."})
+		return
+	}
+
+	context.JSON(http.StatusOK, gin.H{"message": "User was successfully deleted."})
 }
 
 func getFilms(context *gin.Context) {

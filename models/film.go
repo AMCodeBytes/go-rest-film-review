@@ -21,7 +21,6 @@ type Film struct {
 	DeletedAt   time.Time
 }
 
-// Create a slice of films
 var films = []Film{}
 
 func GetFilmByID(id string) Film {
@@ -33,7 +32,6 @@ func GetAllFilms() []Film {
 	return films
 }
 
-// Save a film
 func (f Film) Create() {
 	films = append(films, f)
 }
@@ -41,7 +39,7 @@ func (f Film) Create() {
 func DeleteFilm(id string) error {
 	idx := slices.IndexFunc(films, func(f Film) bool { return f.ID == id })
 
-	if idx != 0 {
+	if idx == -1 {
 		return errors.New("no film exists")
 	}
 
