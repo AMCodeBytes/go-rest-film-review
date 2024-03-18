@@ -35,6 +35,26 @@ func (u User) Create() {
 	users = append(users, u)
 }
 
+func UpdateUser(id string, user User) error {
+	idx := slices.IndexFunc(users, func(u User) bool { return u.ID == id })
+
+	if idx == -1 {
+		return errors.New("no user exists")
+	}
+
+	updateUser := &users[idx]
+
+	(*updateUser).Name = user.Name
+	(*updateUser).Email = user.Email
+	(*updateUser).Password = user.Password
+	(*updateUser).Likes = user.Likes
+	(*updateUser).Dislikes = user.Dislikes
+	(*updateUser).Comments = user.Comments
+	(*updateUser).UpdatedAt = time.Now()
+
+	return nil
+}
+
 func DeleteUser(id string) error {
 	idx := slices.IndexFunc(users, func(u User) bool { return u.ID == id })
 

@@ -37,6 +37,26 @@ func createUser(context *gin.Context) {
 	context.JSON(http.StatusCreated, gin.H{"message": "User created!", "user": user})
 }
 
+func updateUser(context *gin.Context) {
+	id := context.Param("id")
+	var user models.User
+
+	err := context.ShouldBindJSON(&user)
+
+	if err != nil {
+		context.JSON(http.StatusBadRequest, gin.H{"Message": "Could not parse request data."})
+		return
+	}
+
+	err2 := models.UpdateUser(id, user)
+
+	if err2 != nil {
+		context.JSON(http.StatusBadRequest, gin.H{"message": "The user failed to update."})
+	}
+
+	context.JSON(http.StatusOK, gin.H{"message": "User was successfully updated."})
+}
+
 func deleteUser(context *gin.Context) {
 	id := context.Param("id")
 

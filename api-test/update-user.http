@@ -1,0 +1,8 @@
+PUT http://localhost:8080/users/123-abc-qwerty
+Content-Type: "application/json"
+
+{
+  "name": "Forename Surname",
+  "email": "update@test.com",
+  "password": "NewPassword123!"
+}
