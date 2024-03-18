@@ -40,6 +40,26 @@ func createFilm(context *gin.Context) {
 	context.JSON(http.StatusCreated, gin.H{"message": "Film created!", "film": film})
 }
 
+func updateFilm(context *gin.Context) {
+	id := context.Param("id")
+	var film models.Film
+
+	err := context.ShouldBindJSON(&film)
+
+	if err != nil {
+		context.JSON(http.StatusBadRequest, gin.H{"Message": "Could not parse request data."})
+		return
+	}
+
+	err2 := models.UpdateFilm(id, film)
+
+	if err2 != nil {
+		context.JSON(http.StatusBadRequest, gin.H{"message": "The film failed to update."})
+	}
+
+	context.JSON(http.StatusOK, gin.H{"message": "Film was successfully updated."})
+}
+
 func deleteFilm(context *gin.Context) {
 	id := context.Param("id")
 

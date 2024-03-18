@@ -1,0 +1,19 @@
+PUT http://localhost:8080/films/123-abc-qwerty
+Content-Type: "application/json"
+
+{
+  "id": "123-abc-qwerty",
+  "name": "Crash Landing",
+  "description": "Updated the film description. Action and horror everywhere!",
+  "categories": [
+    "Actions", 
+    "Thrillers", 
+    "Horrors"
+  ],
+	"likes": 16,
+	"dislikes": 3,
+	"comments": [
+    "This is a great film. Edit: Actually it is the best film ever.",
+    "Could do with more action... actually maybe not."
+  ]
+}

@@ -36,6 +36,28 @@ func (f Film) Create() {
 	films = append(films, f)
 }
 
+func UpdateFilm(id string, film Film) error {
+	idx := slices.IndexFunc(films, func(f Film) bool { return f.ID == id })
+
+	if idx == -1 {
+		return errors.New("no film exists")
+	}
+
+	updateFilm := &films[idx]
+
+	(*updateFilm).Name = film.Name
+	(*updateFilm).Description = film.Description
+	(*updateFilm).Thumbnail = film.Thumbnail
+	(*updateFilm).Categories = film.Categories
+	(*updateFilm).ReleasedAt = film.ReleasedAt
+	(*updateFilm).Likes = film.Likes
+	(*updateFilm).Dislikes = film.Dislikes
+	(*updateFilm).Comments = film.Comments
+	(*updateFilm).UpdatedAt = time.Now()
+
+	return nil
+}
+
 func DeleteFilm(id string) error {
 	idx := slices.IndexFunc(films, func(f Film) bool { return f.ID == id })
 

@@ -12,5 +12,6 @@ func RegisterRoutes(server *gin.Engine) {
 	server.GET("/films", getFilms)
 	server.GET("/films/:id", getFilm)
 	server.POST("/films", createFilm)
+	server.PUT("/films/:id", updateFilm)
 	server.POST("/films/delete/:id", deleteFilm)
 }
