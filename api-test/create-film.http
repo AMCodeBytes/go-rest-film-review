@@ -4,6 +4,7 @@ Content-Type: application/json
 {
   "id": "123-abc-qwerty",
   "name": "Film name",
+  "type": "Movie",
   "description": "Film description will go here for the film.",
   "categories": [
     "Action", 

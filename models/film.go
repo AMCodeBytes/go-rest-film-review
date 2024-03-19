@@ -9,6 +9,7 @@ import (
 type Film struct {
 	ID          string
 	Name        string `binding:"required"`
+	Type        string `binding:"required"`
 	Description string `binding:"required"`
 	Thumbnail   string
 	Categories  []string
