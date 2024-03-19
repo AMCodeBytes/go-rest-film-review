@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/AMCodeBytes/go-rest-film-review/models"
+	"github.com/AMCodeBytes/go-rest-film-review/utils"
 	"github.com/gin-gonic/gin"
 )
 
@@ -26,6 +27,14 @@ func createUser(context *gin.Context) {
 		context.JSON(http.StatusBadRequest, gin.H{"Message": "Could not parse request data."})
 		return
 	}
+
+	hashedPassword, err := utils.HashPassword(user.Password)
+
+	if err != nil {
+		context.JSON(http.StatusInternalServerError, gin.H{"message": "Failed to hash password."})
+	}
+
+	user.Password = hashedPassword
 
 	// user.ID = "123-abc-qwerty"
 	// user.Name = "First Second"
