@@ -1,4 +1,4 @@
-POST http://localhost:8080/users/delete/123-abc-qwerty
+DELETE http://localhost:8080/users/123-abc-qwerty
 Content-Type: application/json
 
 {
