@@ -55,7 +55,7 @@ func (user User) Update(id string) error {
 	return nil
 }
 
-func DeleteUser(id string) error {
+func (user User) Delete(id string) error {
 	idx := slices.IndexFunc(users, func(u User) bool { return u.ID == id })
 
 	if idx == -1 {

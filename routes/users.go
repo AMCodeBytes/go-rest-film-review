@@ -59,8 +59,9 @@ func updateUser(context *gin.Context) {
 
 func deleteUser(context *gin.Context) {
 	id := context.Param("id")
+	var user models.User
 
-	err := models.DeleteUser(id)
+	err := user.Delete(id)
 
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"message": "The user failed to be deleted."})
