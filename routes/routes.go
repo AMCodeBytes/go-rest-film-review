@@ -4,6 +4,7 @@ import "github.com/gin-gonic/gin"
 
 func RegisterRoutes(server *gin.Engine) {
 	server.POST("/signup", createUser)
+	server.POST("/login", login)
 
 	server.GET("/users", getUsers)
 	server.GET("/users/:id", getUser)

@@ -18,6 +18,26 @@ func getUser(context *gin.Context) {
 	context.JSON(http.StatusOK, models.GetUserByID(id))
 }
 
+func login(context *gin.Context) {
+	var user models.User
+
+	err := context.ShouldBindJSON(&user)
+
+	if err != nil {
+		context.JSON(http.StatusBadRequest, gin.H{"message": "Could not parse request data."})
+		return
+	}
+
+	err2 := user.Login()
+
+	if err2 != nil {
+		context.JSON(http.StatusBadRequest, gin.H{"message": "Invalid credentials."})
+		return
+	}
+
+	context.JSON(http.StatusCreated, gin.H{"message": "User has logged in!"})
+}
+
 func createUser(context *gin.Context) {
 	var user models.User
 
@@ -32,6 +52,7 @@ func createUser(context *gin.Context) {
 
 	if err != nil {
 		context.JSON(http.StatusInternalServerError, gin.H{"message": "Failed to hash password."})
+		return
 	}
 
 	user.Password = hashedPassword

@@ -4,13 +4,15 @@ import (
 	"errors"
 	"slices"
 	"time"
+
+	"github.com/AMCodeBytes/go-rest-film-review/utils"
 )
 
 type User struct {
 	ID        string
-	Name      string `binding:"required"`
-	Email     string `binding:"required"`
-	Password  string `binding:"required"`
+	Name      string
+	Email     string
+	Password  string
 	Likes     []string
 	Dislikes  []string
 	Comments  []string
@@ -29,6 +31,24 @@ func GetUserByID(id string) User {
 
 func GetAllUsers() []User {
 	return users
+}
+
+func (user User) Login() error {
+	idx := slices.IndexFunc(users, func(u User) bool { return u.Email == user.Email })
+
+	if idx == -1 {
+		return errors.New("no user exists")
+	}
+
+	u := &users[idx]
+
+	match := utils.AuthenticatePassword(user.Password, u.Password)
+
+	if !match {
+		return errors.New("invalid credentials")
+	}
+
+	return nil
 }
 
 func (user User) Create() {
