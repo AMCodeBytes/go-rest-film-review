@@ -31,11 +31,11 @@ func GetAllUsers() []User {
 	return users
 }
 
-func (u User) Create() {
-	users = append(users, u)
+func (user User) Create() {
+	users = append(users, user)
 }
 
-func UpdateUser(id string, user User) error {
+func (user User) Update(id string) error {
 	idx := slices.IndexFunc(users, func(u User) bool { return u.ID == id })
 
 	if idx == -1 {

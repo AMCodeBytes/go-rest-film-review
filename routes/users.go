@@ -48,7 +48,7 @@ func updateUser(context *gin.Context) {
 		return
 	}
 
-	err2 := models.UpdateUser(id, user)
+	err2 := user.Update(id)
 
 	if err2 != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"message": "The user failed to update."})
