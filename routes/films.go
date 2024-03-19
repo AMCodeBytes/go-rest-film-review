@@ -62,8 +62,9 @@ func updateFilm(context *gin.Context) {
 
 func deleteFilm(context *gin.Context) {
 	id := context.Param("id")
+	var film models.Film
 
-	err := models.DeleteFilm(id)
+	err := film.Delete(id)
 
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"message": "The film failed to be deleted."})

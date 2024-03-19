@@ -33,8 +33,8 @@ func GetAllFilms() []Film {
 	return films
 }
 
-func (f Film) Create() {
-	films = append(films, f)
+func (film Film) Create() {
+	films = append(films, film)
 }
 
 func (film Film) Update(id string) error {
@@ -60,7 +60,7 @@ func (film Film) Update(id string) error {
 	return nil
 }
 
-func DeleteFilm(id string) error {
+func (film Film) Delete(id string) error {
 	idx := slices.IndexFunc(films, func(f Film) bool { return f.ID == id })
 
 	if idx == -1 {
