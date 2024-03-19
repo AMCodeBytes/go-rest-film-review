@@ -4,6 +4,7 @@ Content-Type: "application/json"
 {
   "id": "123-abc-qwerty",
   "name": "Crash Landing",
+  "type": "Series",
   "description": "Updated the film description. Action and horror everywhere!",
   "categories": [
     "Actions", 

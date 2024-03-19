@@ -37,7 +37,7 @@ func (f Film) Create() {
 	films = append(films, f)
 }
 
-func UpdateFilm(id string, film Film) error {
+func (film Film) Update(id string) error {
 	idx := slices.IndexFunc(films, func(f Film) bool { return f.ID == id })
 
 	if idx == -1 {
@@ -47,6 +47,7 @@ func UpdateFilm(id string, film Film) error {
 	updateFilm := &films[idx]
 
 	(*updateFilm).Name = film.Name
+	(*updateFilm).Type = film.Type
 	(*updateFilm).Description = film.Description
 	(*updateFilm).Thumbnail = film.Thumbnail
 	(*updateFilm).Categories = film.Categories

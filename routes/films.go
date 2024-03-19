@@ -51,7 +51,7 @@ func updateFilm(context *gin.Context) {
 		return
 	}
 
-	err2 := models.UpdateFilm(id, film)
+	err2 := film.Update(id)
 
 	if err2 != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"message": "The film failed to update."})
