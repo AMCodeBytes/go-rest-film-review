@@ -33,11 +33,11 @@ func GetAllUsers() []User {
 	return users
 }
 
-func (user User) Login() error {
+func (user User) Login() (string, error) {
 	idx := slices.IndexFunc(users, func(u User) bool { return u.Email == user.Email })
 
 	if idx == -1 {
-		return errors.New("no user exists")
+		return "", errors.New("no user exists")
 	}
 
 	u := &users[idx]
@@ -45,10 +45,10 @@ func (user User) Login() error {
 	match := utils.AuthenticatePassword(user.Password, u.Password)
 
 	if !match {
-		return errors.New("invalid credentials")
+		return "", errors.New("invalid credentials")
 	}
 
-	return nil
+	return u.ID, nil
 }
 
 func (user User) Create() {

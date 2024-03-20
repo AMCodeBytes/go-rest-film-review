@@ -28,14 +28,21 @@ func login(context *gin.Context) {
 		return
 	}
 
-	err2 := user.Login()
+	user.ID, err = user.Login()
 
-	if err2 != nil {
-		context.JSON(http.StatusBadRequest, gin.H{"message": "Invalid credentials."})
+	if err != nil {
+		context.JSON(http.StatusUnauthorized, gin.H{"message": "Invalid credentials."})
 		return
 	}
 
-	context.JSON(http.StatusCreated, gin.H{"message": "User has logged in!"})
+	token, err := utils.GenerateToken(user.Email, user.ID)
+
+	if err != nil {
+		context.JSON(http.StatusInternalServerError, gin.H{"message": "Failed to generate token."})
+		return
+	}
+
+	context.JSON(http.StatusCreated, gin.H{"message": "User has logged in!", "token": token})
 }
 
 func createUser(context *gin.Context) {
