@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/AMCodeBytes/go-rest-film-review/models"
+	"github.com/AMCodeBytes/go-rest-film-review/utils"
 	"github.com/gin-gonic/gin"
 )
 
@@ -18,9 +19,23 @@ func getFilm(context *gin.Context) {
 }
 
 func createFilm(context *gin.Context) {
+	token := context.Request.Header.Get("Authorization")
+
+	if token == "" {
+		context.JSON(http.StatusUnauthorized, gin.H{"message": "Not authorised."})
+		return
+	}
+
+	err := utils.VerifyToken(token)
+
+	if err != nil {
+		context.JSON(http.StatusUnauthorized, gin.H{"message": "Not authorised."})
+		return
+	}
+
 	var film models.Film
 
-	err := context.ShouldBindJSON(&film)
+	err = context.ShouldBindJSON(&film)
 
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"message": "Could not parse request data."})

@@ -35,6 +35,10 @@ func login(context *gin.Context) {
 		return
 	}
 
+	if user.ID == "" {
+		context.JSON(http.StatusInternalServerError, gin.H{"message": "Invalid credentials."})
+	}
+
 	token, err := utils.GenerateToken(user.Email, user.ID)
 
 	if err != nil {
