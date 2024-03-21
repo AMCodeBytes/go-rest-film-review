@@ -1,5 +1,6 @@
 DELETE http://localhost:8080/films/123-abc-qwerty
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVtYWlsQHRlc3QuY29tIiwiZXhwIjoxNzExMDI4MzIzLCJ1c2VySWQiOiIxMjMtYWJjLXF3ZXJ0eSJ9.NbUMpotsY1qlcvZIoRq4nXGpPr3UWz8pqdemqjJe5JI
 
 {
   "id": "123-abc-qwerty"
