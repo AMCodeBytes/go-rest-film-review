@@ -83,7 +83,7 @@ func deleteFilm(context *gin.Context) {
 
 	if film.Locked {
 		if film.CreatedBy != userId {
-			context.JSON(http.StatusUnauthorized, gin.H{"message": "Not authorised to update film"})
+			context.JSON(http.StatusUnauthorized, gin.H{"message": "Not authorised to delete film"})
 			return
 		}
 	}
