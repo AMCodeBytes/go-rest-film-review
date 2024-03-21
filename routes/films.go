@@ -48,6 +48,16 @@ func updateFilm(context *gin.Context) {
 	id := context.Param("id")
 	var film models.Film
 
+	userId := context.GetString("userId")
+	film = models.GetFilmByID(id)
+
+	if film.Locked {
+		if film.CreatedBy != userId {
+			context.JSON(http.StatusUnauthorized, gin.H{"message": "Not authorised to update film"})
+			return
+		}
+	}
+
 	err := context.ShouldBindJSON(&film)
 
 	if err != nil {
@@ -55,9 +65,9 @@ func updateFilm(context *gin.Context) {
 		return
 	}
 
-	err2 := film.Update(id)
+	err = film.Update(id)
 
-	if err2 != nil {
+	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"message": "The film failed to update."})
 	}
 
@@ -67,6 +77,16 @@ func updateFilm(context *gin.Context) {
 func deleteFilm(context *gin.Context) {
 	id := context.Param("id")
 	var film models.Film
+
+	userId := context.GetString("userId")
+	film = models.GetFilmByID(id)
+
+	if film.Locked {
+		if film.CreatedBy != userId {
+			context.JSON(http.StatusUnauthorized, gin.H{"message": "Not authorised to update film"})
+			return
+		}
+	}
 
 	err := film.Delete(id)
 

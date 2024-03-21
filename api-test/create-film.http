@@ -1,6 +1,6 @@
 POST http://localhost:8080/films
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVtYWlsQHRlc3QuY29tIiwiZXhwIjoxNzExMDI4MzIzLCJ1c2VySWQiOiIxMjMtYWJjLXF3ZXJ0eSJ9.NbUMpotsY1qlcvZIoRq4nXGpPr3UWz8pqdemqjJe5JI
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVtYWlsMUB0ZXN0LmNvbSIsImV4cCI6MTcxMTAyOTkxNCwidXNlcklkIjoiNzg5LWFiYy1xd2VydHkifQ.DB8nOts_hn0r0SNEdbd5T0R1sUE42ZDrWTIEbknx5zA
 
 {
   "id": "123-abc-qwerty",
