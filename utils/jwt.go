@@ -19,7 +19,7 @@ func GenerateToken(email string, userId string) (string, error) {
 	return token.SignedString([]byte(secretKey))
 }
 
-func VerifyToken(token string) error {
+func VerifyToken(token string) (string, error) {
 	parsedToken, err := jwt.Parse(token, func(token *jwt.Token) (interface{}, error) {
 		// Check if the token was signed with the correct method type (using go type checking)
 		_, ok := token.Method.(*jwt.SigningMethodHMAC)
@@ -32,24 +32,33 @@ func VerifyToken(token string) error {
 	})
 
 	if err != nil {
-		return errors.New("could not parse token")
+		return "", errors.New("could not parse token")
 	}
 
 	tokenIsValid := parsedToken.Valid
 
 	if !tokenIsValid {
-		return errors.New("invalid token")
+		return "", errors.New("invalid token")
 	}
 
-	// Can be used to check the contents of the token.
-	// claims, ok := parsedToken.Claims.(jwt.MapClaims)
+	userId, err := getUserID(parsedToken)
 
-	// if !ok {
-	// 	return errors.New("Invalid token claims")
-	// }
+	if err != nil {
+		return "", errors.New("failed to get user id from token")
+	}
+
+	return userId, nil
+}
+
+func getUserID(parsedToken *jwt.Token) (string, error) {
+	claims, ok := parsedToken.Claims.(jwt.MapClaims)
+
+	if !ok {
+		return "", errors.New("invalid token claims")
+	}
 
 	// email := claims["email"].(string)
-	// userId := claims["userId"].(string)
+	userId := claims["userId"].(string)
 
-	return nil
+	return userId, nil
 }

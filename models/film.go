@@ -17,6 +17,8 @@ type Film struct {
 	Likes       int
 	Dislikes    int
 	Comments    []string
+	Locked      bool
+	CreatedBy   string
 	CreatedAt   time.Time
 	UpdatedAt   time.Time
 	DeletedAt   time.Time

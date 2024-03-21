@@ -1,6 +1,6 @@
 POST http://localhost:8080/films
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVtYWlsQHRlc3QuY29tIiwiZXhwIjoxNzEwOTUxODg2LCJ1c2VySWQiOiIxMjMtYWJjLXF3ZXJ0eSJ9.nPCd1BFEsvVQJCMxeEvMdt5rXgTZjeVQnieQScJehx8
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVtYWlsQHRlc3QuY29tIiwiZXhwIjoxNzExMDI3MjI0LCJ1c2VySWQiOiIxMjMtYWJjLXF3ZXJ0eSJ9.iIJT5v4TpHG8m9ILADw-2L9uthuvmEaGEFhSc3Kbb40
 
 {
   "id": "123-abc-qwerty",
@@ -17,5 +17,6 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVtYWlsQHRlc3Qu
 	"comments": [
     "This is a great film",
     "Could do with more action"
-  ]
+  ],
+  "locked": true
 }

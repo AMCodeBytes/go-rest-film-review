@@ -26,7 +26,7 @@ func createFilm(context *gin.Context) {
 		return
 	}
 
-	err := utils.VerifyToken(token)
+	userId, err := utils.VerifyToken(token)
 
 	if err != nil {
 		context.JSON(http.StatusUnauthorized, gin.H{"message": "Not authorised."})
@@ -49,6 +49,8 @@ func createFilm(context *gin.Context) {
 	// film.Likes = 15
 	// film.Dislikes = 2
 	// film.Comments = []string{"This is a great film", "Could do with more action"}
+
+	film.CreatedBy = userId
 
 	film.Create()
 
