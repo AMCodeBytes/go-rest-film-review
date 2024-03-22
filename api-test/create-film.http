@@ -3,7 +3,6 @@ Content-Type: application/json
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVtYWlsMUB0ZXN0LmNvbSIsImV4cCI6MTcxMTAyOTkxNCwidXNlcklkIjoiNzg5LWFiYy1xd2VydHkifQ.DB8nOts_hn0r0SNEdbd5T0R1sUE42ZDrWTIEbknx5zA
 
 {
-  "id": "123-abc-qwerty",
   "name": "Film name",
   "type": "Movie",
   "description": "Film description will go here for the film.",

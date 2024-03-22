@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/AMCodeBytes/go-rest-film-review/models"
+	"github.com/AMCodeBytes/go-rest-film-review/utils"
 	"github.com/gin-gonic/gin"
 )
 
@@ -34,6 +35,14 @@ func createFilm(context *gin.Context) {
 	// film.Likes = 15
 	// film.Dislikes = 2
 	// film.Comments = []string{"This is a great film", "Could do with more action"}
+
+	filmID, err := utils.GenerateUUID()
+
+	if err != nil {
+		context.JSON(http.StatusInternalServerError, gin.H{"message": "Failed to generate UUID."})
+	}
+
+	film.ID = filmID
 
 	userId := context.GetString("userId")
 

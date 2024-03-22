@@ -68,6 +68,14 @@ func createUser(context *gin.Context) {
 
 	user.Password = hashedPassword
 
+	userID, err := utils.GenerateUUID()
+
+	if err != nil {
+		context.JSON(http.StatusInternalServerError, gin.H{"message": "Failed to generate UUID."})
+	}
+
+	user.ID = userID
+
 	// user.ID = "123-abc-qwerty"
 	// user.Name = "First Second"
 	// user.Email = "email@test.com"
