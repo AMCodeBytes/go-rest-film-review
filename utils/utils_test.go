@@ -34,6 +34,40 @@ func TestAuthenticatePassword(t *testing.T) {
 	}
 }
 
+func TestAuthenticatePasswordTableDriven(t *testing.T) {
+	// Define the columns of the table
+	var tests = []struct {
+		name          string
+		password      string
+		checkPassword string
+		expected      bool
+	}{
+		// The table
+		{"Correct Password", "SuperSecret123!", "SuperSecret123!", true},
+		{"Incorrect Password", "SuperSecret123!", "!123SuperSecret", false},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			hashResult, err := HashPassword(tt.password)
+
+			if err != nil {
+				t.Errorf("Error hashing password thrown: %v, result: %v", err, hashResult)
+			}
+
+			if hashResult == "" {
+				t.Error("No hashed password returned")
+			}
+
+			result := AuthenticatePassword(tt.checkPassword, hashResult)
+
+			if result != tt.expected {
+				t.Errorf("Error result '%v' didn't match expected result '%v'", result, tt.expected)
+			}
+		})
+	}
+}
+
 func TestGenerateToken(t *testing.T) {
 	result, err := GenerateToken("test@email.com", "9f4f1408-d665-4f25-a252-fe9b154f337b")
 
