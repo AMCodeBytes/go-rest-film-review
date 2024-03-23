@@ -119,3 +119,7 @@ func deleteUser(context *gin.Context) {
 
 	context.JSON(http.StatusOK, gin.H{"message": "User was successfully deleted."})
 }
+
+// func likeFilm(context *gin.context) {
+
+// }

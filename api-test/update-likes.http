@@ -1,0 +1,8 @@
+PUT http://localhost:8080/films/like/1bc767ef-8259-41d6-9f6f-81422121bdd1
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVtYWlsQHRlc3QuY29tIiwiZXhwIjoxNzExMjE3NzQwLCJ1c2VySWQiOiJiYjNmY2M5ZC0yNmUyLTQ5ZjEtYmFkZi1kYmE0OTk3NDhmYWYifQ.Cfgu4Ez-tl0JljRCT9es8s1Rd70BMzrEOKftr5ZPzfI
+
+{
+  "id": "c89f8435-82bf-4502-b805-ead03b1ee0d4",
+  "userId": "0bea1165-e400-46fb-9b27-754b4b0d16e5"
+}

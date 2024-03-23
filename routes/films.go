@@ -78,6 +78,7 @@ func updateFilm(context *gin.Context) {
 
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"message": "The film failed to update."})
+		return
 	}
 
 	context.JSON(http.StatusOK, gin.H{"message": "Film was successfully updated."})
@@ -105,4 +106,30 @@ func deleteFilm(context *gin.Context) {
 	}
 
 	context.JSON(http.StatusOK, gin.H{"message": "Film was successfully deleted."})
+}
+
+func likeFilm(context *gin.Context) {
+	id := context.Param("id")
+	var film models.Film
+	var user models.User
+
+	userId := context.GetString("userId")
+	film = models.GetFilmByID(id)
+	user = models.GetUserByID(userId)
+
+	like, err := user.Like(userId, id)
+
+	if err != nil {
+		context.JSON(http.StatusInternalServerError, gin.H{"message": "Failed to update the user's like."})
+		return
+	}
+
+	err = film.UpdateLikes(id, like)
+
+	if err != nil {
+		context.JSON(http.StatusInternalServerError, gin.H{"message": "Failed to update the film's like."})
+		return
+	}
+
+	context.JSON(http.StatusOK, gin.H{"message": "Successfully updated the likes."})
 }

@@ -72,3 +72,17 @@ func (film Film) Delete(id string) error {
 	films = slices.Replace(films, idx, idx+1)
 	return nil
 }
+
+func (film Film) UpdateLikes(id string, like int) error {
+	idx := slices.IndexFunc(films, func(f Film) bool { return f.ID == id })
+
+	if idx == -1 {
+		return errors.New("no film exists")
+	}
+
+	updateFilm := &films[idx]
+
+	(*updateFilm).Likes = (*updateFilm).Likes + like
+
+	return nil
+}

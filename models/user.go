@@ -13,13 +13,30 @@ type User struct {
 	Name      string
 	Email     string
 	Password  string
-	Likes     []string
-	Dislikes  []string
-	Comments  []string
-	Bookmarks []string
+	Likes     []Like
+	Dislikes  []Dislike
+	Comments  []Comment
+	Bookmarks []Bookmark
 	CreatedAt time.Time
 	UpdatedAt time.Time
 	DeletedAt time.Time
+}
+
+type Like struct {
+	filmID string
+}
+
+type Dislike struct {
+	filmID string
+}
+
+type Comment struct {
+	filmID  string
+	comment string
+}
+
+type Bookmark struct {
+	filmID string
 }
 
 var users = []User{}
@@ -84,4 +101,27 @@ func (user User) Delete(id string) error {
 
 	users = slices.Replace(users, idx, idx+1)
 	return nil
+}
+
+func (user User) Like(id string, filmId string) (int, error) {
+	var like Like
+	idx := slices.IndexFunc(users, func(u User) bool { return u.ID == id })
+
+	if idx == -1 {
+		return 0, errors.New("no user exists")
+	}
+
+	selectedUser := &users[idx]
+
+	existsId := slices.IndexFunc(selectedUser.Likes, func(l Like) bool { return l.filmID == filmId })
+
+	if existsId == -1 {
+		like.filmID = filmId
+
+		(*selectedUser).Likes = append((*selectedUser).Likes, like)
+		return 1, nil
+	}
+
+	(*selectedUser).Likes = slices.Replace((*selectedUser).Likes, existsId, existsId+1)
+	return -1, nil
 }
