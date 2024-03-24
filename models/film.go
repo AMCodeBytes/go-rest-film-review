@@ -86,3 +86,17 @@ func (film Film) UpdateLikes(id string, like int) error {
 
 	return nil
 }
+
+func (film Film) UpdateDislike(id string, dislike int) error {
+	idx := slices.IndexFunc(films, func(f Film) bool { return f.ID == id })
+
+	if idx == -1 {
+		return errors.New("no film exists")
+	}
+
+	updateFilm := &films[idx]
+
+	(*updateFilm).Dislikes = (*updateFilm).Dislikes + dislike
+
+	return nil
+}

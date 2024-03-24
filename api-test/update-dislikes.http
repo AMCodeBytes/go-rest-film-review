@@ -1,0 +1,8 @@
+PUT http://localhost:8080/films/dislike/230a9cd5-ed7d-4e38-889f-0aef7ded935d
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVtYWlsQHRlc3QuY29tIiwiZXhwIjoxNzExMjk0MjM0LCJ1c2VySWQiOiJjMGE0Y2ZiOS0yMzcxLTRiYzEtYTg3Ny1mY2I1NzNhYWNkOTAifQ.fku7nIYd5IAkONycSpei_ZNJsQnb6dqyaqA0pmz8B4M
+
+{
+  "id": "230a9cd5-ed7d-4e38-889f-0aef7ded935d",
+  "userId": "c0a4cfb9-2371-4bc1-a877-fcb573aacd90"
+}

@@ -112,7 +112,6 @@ func likeFilm(context *gin.Context) {
 	id := context.Param("id")
 	var film models.Film
 	var user models.User
-
 	userId := context.GetString("userId")
 	film = models.GetFilmByID(id)
 	user = models.GetUserByID(userId)
@@ -132,4 +131,29 @@ func likeFilm(context *gin.Context) {
 	}
 
 	context.JSON(http.StatusOK, gin.H{"message": "Successfully updated the likes."})
+}
+
+func dislikeFilm(context *gin.Context) {
+	id := context.Param("id")
+	var film models.Film
+	var user models.User
+	userId := context.GetString("userId")
+	film = models.GetFilmByID(id)
+	user = models.GetUserByID(userId)
+
+	dislike, err := user.Dislike(userId, id)
+
+	if err != nil {
+		context.JSON(http.StatusInternalServerError, gin.H{"message": "Failed to update the user's dislike."})
+		return
+	}
+
+	err = film.UpdateDislike(id, dislike)
+
+	if err != nil {
+		context.JSON(http.StatusInternalServerError, gin.H{"message": "Failed to update the film's dislike."})
+		return
+	}
+
+	context.JSON(http.StatusOK, gin.H{"message": "Successfully updated the dislikes."})
 }

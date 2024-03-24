@@ -28,4 +28,5 @@ func RegisterRoutes(server *gin.Engine) {
 	protected.PUT("/films/:id", updateFilm)
 	protected.DELETE("/films/:id", deleteFilm)
 	protected.PUT("/films/like/:id", likeFilm)
+	protected.PUT("/films/dislike/:id", dislikeFilm)
 }
