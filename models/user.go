@@ -23,20 +23,20 @@ type User struct {
 }
 
 type Like struct {
-	filmID string
+	FilmID string
 }
 
 type Dislike struct {
-	filmID string
+	FilmID string
 }
 
 type Comment struct {
-	filmID  string
-	comment string
+	FilmID  string
+	Comment string
 }
 
 type Bookmark struct {
-	filmID string
+	FilmID string
 }
 
 var users = []User{}
@@ -113,10 +113,10 @@ func (user User) Like(id string, filmId string) (int, error) {
 
 	selectedUser := &users[idx]
 
-	existsId := slices.IndexFunc(selectedUser.Likes, func(l Like) bool { return l.filmID == filmId })
+	existsId := slices.IndexFunc(selectedUser.Likes, func(l Like) bool { return l.FilmID == filmId })
 
 	if existsId == -1 {
-		like.filmID = filmId
+		like.FilmID = filmId
 
 		(*selectedUser).Likes = append((*selectedUser).Likes, like)
 		return 1, nil

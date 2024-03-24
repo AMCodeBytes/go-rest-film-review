@@ -1,6 +1,6 @@
 POST http://localhost:8080/films
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVtYWlsQHRlc3QuY29tIiwiZXhwIjoxNzExMjE3NzQwLCJ1c2VySWQiOiJiYjNmY2M5ZC0yNmUyLTQ5ZjEtYmFkZi1kYmE0OTk3NDhmYWYifQ.Cfgu4Ez-tl0JljRCT9es8s1Rd70BMzrEOKftr5ZPzfI
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVtYWlsQHRlc3QuY29tIiwiZXhwIjoxNzExMjg5NjIwLCJ1c2VySWQiOiJjNWE3MTZiOC1lZjZmLTQ2ZjctOTc1Mi01OTQwN2UzMjgzMTAifQ.0SgvJIaL11geyKD6XL_FSTidC7ZBKNz4YMiu7XmzIDo
 
 {
   "name": "Film name",
