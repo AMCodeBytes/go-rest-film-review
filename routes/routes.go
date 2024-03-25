@@ -30,4 +30,5 @@ func RegisterRoutes(server *gin.Engine) {
 	protected.PUT("/films/like/:id", likeFilm)
 	protected.PUT("/films/dislike/:id", dislikeFilm)
 	protected.PUT("/films/bookmark/:id", bookmarkFilm)
+	protected.POST("/films/comment/:id", commentFilm)
 }

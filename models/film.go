@@ -8,20 +8,25 @@ import (
 
 type Film struct {
 	ID          string
-	Name        string `binding:"required"`
-	Type        string `binding:"required"`
-	Description string `binding:"required"`
+	Name        string
+	Type        string
+	Description string
 	Thumbnail   string
 	Categories  []string
 	ReleasedAt  time.Time
 	Likes       int
 	Dislikes    int
-	Comments    []string
+	Comments    []Comment
 	Locked      bool
 	CreatedBy   string
 	CreatedAt   time.Time
 	UpdatedAt   time.Time
 	DeletedAt   time.Time
+}
+
+type Comment struct {
+	UserID  string
+	Comment string
 }
 
 var films = []Film{}
@@ -98,5 +103,21 @@ func (film Film) UpdateDislike(id string, dislike int) error {
 
 	(*updateFilm).Dislikes = (*updateFilm).Dislikes + dislike
 
+	return nil
+}
+
+func (film Film) Comment(id string, comment Comment) error {
+	idx := slices.IndexFunc(films, func(f Film) bool { return f.ID == id })
+
+	if idx == -1 {
+		return errors.New("no film exists")
+	}
+
+	selectedFilm := &films[idx]
+
+	// comment.UserID = userId
+	// comment.Comment = message
+
+	(*selectedFilm).Comments = append((*selectedFilm).Comments, comment)
 	return nil
 }

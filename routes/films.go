@@ -173,3 +173,25 @@ func bookmarkFilm(context *gin.Context) {
 
 	context.JSON(http.StatusOK, gin.H{"message": "Successfully updated the bookmarks."})
 }
+
+func commentFilm(context *gin.Context) {
+	id := context.Param("id")
+	var film models.Film
+	var comment models.Comment
+
+	err := context.ShouldBindJSON(&comment)
+
+	if err != nil {
+		context.JSON(http.StatusBadRequest, gin.H{"message": "Could not parse request data."})
+		return
+	}
+
+	err = film.Comment(id, comment)
+
+	if err != nil {
+		context.JSON(http.StatusInternalServerError, gin.H{"message": "Failed to update the film's comments."})
+		return
+	}
+
+	context.JSON(http.StatusOK, gin.H{"message": "Successfully updated the comments."})
+}

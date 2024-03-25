@@ -1,17 +1,8 @@
-POST http://localhost:8080/films
+POST http://localhost:8080/films/comment/242df893-f1e9-4427-96d3-15deccadce78
 Content-Type: application/json
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVtYWlsQHRlc3QuY29tIiwiZXhwIjoxNzExMzg1MTc4LCJ1c2VySWQiOiI3MDgxYmFmYy03NDg5LTRhNDMtOTFiNy05ZDA1NWExMmQ4ZTcifQ.YC2NYumHpZzwema1Qfdt-QJ_Y6hy9K8nDMCYg8xx8zI
 
 {
-  "name": "Film name",
-  "type": "Movie",
-  "description": "Film description will go here for the film.",
-  "categories": [
-    "Action", 
-    "Thriller", 
-    "Horror"
-  ],
-	"likes": 15,
-	"dislikes": 2,
-  "locked": true
+  "userId": "7081bafc-7489-4a43-91b7-9d055a12d8e7",
+  "comment": "This is the best movie since shredded chicken and pulled pork!"
 }

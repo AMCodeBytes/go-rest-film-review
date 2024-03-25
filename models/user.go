@@ -15,7 +15,6 @@ type User struct {
 	Password  string
 	Likes     []Like
 	Dislikes  []Dislike
-	Comments  []Comment
 	Bookmarks []Bookmark
 	CreatedAt time.Time
 	UpdatedAt time.Time
@@ -28,11 +27,6 @@ type Like struct {
 
 type Dislike struct {
 	FilmID string
-}
-
-type Comment struct {
-	FilmID  string
-	Comment string
 }
 
 type Bookmark struct {
@@ -86,7 +80,6 @@ func (user User) Update(id string) error {
 	(*updateUser).Password = user.Password
 	(*updateUser).Likes = user.Likes
 	(*updateUser).Dislikes = user.Dislikes
-	(*updateUser).Comments = user.Comments
 	(*updateUser).UpdatedAt = time.Now()
 
 	return nil
