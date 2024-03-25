@@ -148,3 +148,26 @@ func (user User) Dislike(id string, filmId string) (int, error) {
 	(*selectedUser).Dislikes = slices.Replace((*selectedUser).Dislikes, existsId, existsId+1)
 	return -1, nil
 }
+
+func (user User) Bookmark(id string, filmId string) error {
+	var bookmark Bookmark
+	idx := slices.IndexFunc(users, func(u User) bool { return u.ID == id })
+
+	if idx == -1 {
+		return errors.New("no user exists")
+	}
+
+	selectedUser := &users[idx]
+
+	existsId := slices.IndexFunc(selectedUser.Bookmarks, func(b Bookmark) bool { return b.FilmID == filmId })
+
+	if existsId == -1 {
+		bookmark.FilmID = filmId
+
+		(*selectedUser).Bookmarks = append((*selectedUser).Bookmarks, bookmark)
+		return nil
+	}
+
+	(*selectedUser).Bookmarks = slices.Replace((*selectedUser).Bookmarks, existsId, existsId+1)
+	return nil
+}

@@ -157,3 +157,19 @@ func dislikeFilm(context *gin.Context) {
 
 	context.JSON(http.StatusOK, gin.H{"message": "Successfully updated the dislikes."})
 }
+
+func bookmarkFilm(context *gin.Context) {
+	id := context.Param("id")
+	var user models.User
+	userId := context.GetString("userId")
+	user = models.GetUserByID(userId)
+
+	err := user.Bookmark(userId, id)
+
+	if err != nil {
+		context.JSON(http.StatusInternalServerError, gin.H{"message": "Failed to update the user's bookmarks."})
+		return
+	}
+
+	context.JSON(http.StatusOK, gin.H{"message": "Successfully updated the bookmarks."})
+}

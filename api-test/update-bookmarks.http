@@ -1,0 +1,8 @@
+PUT http://localhost:8080/films/bookmark/f5ea44e0-1658-4de7-974e-bb6774f16385
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVtYWlsQHRlc3QuY29tIiwiZXhwIjoxNzExMzY1NTc5LCJ1c2VySWQiOiI0NmZiYTJkMC04ZDM4LTQxNmUtYTgxYy1lNDI5NjQ2ODQwOWEifQ.NWHJgnKJM7yRAY_pDgQadLyJZtKJrFPck7Wn9TYAQMI
+
+{
+  "id": "46fba2d0-8d38-416e-a81c-e4296468409a",
+  "userId": "37105365-6b66-4435-96c0-2ddbc16ecee2"
+}
